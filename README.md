@@ -10,7 +10,6 @@ git 원격 저장소 연결
     git remote add origin https://github.com/sss654654/BOJ.git
 
 2. git push <원격 저장소 별칭> <로컬 브랜치>
-    git push origin master
-
+    git push origin main
 
 

@@ -146,12 +146,13 @@ git pull origin (브랜치)를 이용하여 해당 브랜치에서 로컬로 코
     Author: sss654654 <zed6740@naver.com>
     Date:   Fri Nov 18 15:01:18 2022 +0900
 
-git 내용 정리
+    git 내용 정리
 
 4. 특정 커밋으로 돌아가고 싶을 때
+
 git log를 통해 보이는 log에서 특정 커밋의 우측 해시 중 하나를 복사
 
-    ex) $git log
+    $git log
     commit c2c45c8c1d8c74289b0d8449428d4f32b5ced823
     Author: sss654654 <zed6740@naver.com>
     Date:   Fri Nov 18 15:01:18 2022 +0900

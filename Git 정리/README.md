@@ -8,7 +8,7 @@
 
 <br/>
 
-## <Git 원격 저장소 연결>
+## Git 원격 저장소 연결
 
 1. git remote add <저장소 별칭, origin> <원격저장소url>
 
@@ -31,7 +31,7 @@
 
 <br/>
 
-## <Github Workflow>
+## Github Workflow
 
 1. 코드 작성
 
@@ -41,7 +41,7 @@
 
 <br/>
 
-## <Local Git Workflow>
+## Local Git Workflow
 
 1. 코드 작성
 
@@ -53,7 +53,7 @@
 
 <br/>
 
-## <Git Branching>
+## Git Branching
 
 웹, 앱을 개발할 시 기능 별로 여러 브랜치를 생성해서 각각의 기능이 구현될 때마다 해당하는 브랜치에 commit
 

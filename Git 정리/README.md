@@ -19,6 +19,7 @@
     git remote -v 시, 연결한 repositroy가 보임
 
 2. git push <원격 저장소 별칭> <로컬 브랜치>
+   
     git push -u origin master
     로컬 브랜치 이름은 관례적으로 master로 함
     -u는 upstream으로 앞으로 origin main까지 안써도 되도록 함
@@ -57,6 +58,7 @@
 웹, 앱을 개발할 시 기능 별로 여러 브랜치를 생성해서 각각의 기능이 구현될 때마다 해당하는 브랜치에 commit
 
 ex) 
+
 master branch : 기본 branch, 따로 생성한 branch들로 부터 pull request를 받아 통합
 study branch : 스터디 서비스 구현
 planner branch :  플래너 서비스 구현
@@ -68,29 +70,37 @@ planner branch :  플래너 서비스 구현
 ## branch 명령어
 
 1. local에서 branch 생성, 전환
+ 
 => git branch : 현재 폴더의 브랜치를 보여줌
 => git checkout : 새 브랜치 생성 후 전환
 => git checkout -b (새 브랜치 이름) : 새 브랜치 생성 후 전환
 => git checkout (브랜치 이름) : 해당 브랜치로 전환 
 
 2. local에서 github에 새 branch 생성
+
 => git push -u origin (생성한 브랜치 이름)
 
 3. 수정사항은 git add, git commit으로 저장한 이후 checkout을 통해 변경된 브랜치로 push함 
+
 => git push origin (변경한 브랜치)
 
 4. 3 이후 github 홈페이지 확인 시 새 브랜치를 다른 브랜치와 비교하여 PULL REQUEST를 생성하고 싶은지 여부를 확인함
+
 => Compare & pull request 버튼 클릭 후 화살표 인터페이스를 통해 원하는 브랜치로 병합(merge)
 ex) 원래 존재하는 브랜치(main) <- 새로 생성한 브랜치(study)
 
 5. branch 삭제
+   
 git branch -d (삭제할 브랜치)
 
 * PULL REQUEST(PR)
+
 : 기본적으로 코드를 다른 브랜치로 가져오도록 요청
 즉, 새로 생성한 브랜치에 계속 커밋하다가 마스터 브랜치로 통합해야 할 경우 생성
-EX)study 브랜치에서 main 브랜치로 PR을 만듬
-EX)planner 브랜치에서 main 브랜치로 PR을 만듬
+
+ex)study 브랜치에서 main 브랜치로 PR, 이후 merge
+
+ex)planner 브랜치에서 main 브랜치로 PR, 이후 merge
 
 <br/>
 
@@ -111,40 +121,44 @@ git pull origin (브랜치)를 이용하여 해당 브랜치에서 로컬로 코
 ## undoing(의도치 않은 작업)
 
 1. git add를 실수한 경우
-git add Readme.md
-=> git reset Readme.md (undo)
+
+    git add Readme.md
+    => git reset Readme.md (undo)
 
 2. git commit을 실수한 경우, 또는 커밋이 여러 개인 경우
-git commit -m "메세지"
-=> git reset HEAD~1
-(HEAD는 마지막 커밋에 대한 포인터, git reset HEAD~1은 내가 방금 만든 커밋을 완전히 취소한다는 의미)
+   
+    git commit -m "메세지"
+    => git reset HEAD~1
+    (HEAD는 마지막 커밋에 대한 포인터, git reset HEAD~1은 내가 방금 만든 커밋을 완전히 취소한다는 의미)
 
 3. git log
+
 시간의 역순으로 모든 커밋의 로그를 확인 가능
 => 스페이스바를 사용하여 아래로 스크롤 가능, q로 빠져나가기
-commit 93bd6a96c89ba7aad194cbc380fd7461a01457fb (HEAD -> main, origin/main)
-Author: sss654654 <zed6740@naver.com>
-Date:   Fri Nov 18 16:09:48 2022 +0900
+
+    commit 93bd6a96c89ba7aad194cbc380fd7461a01457fb (HEAD -> main, origin/main)
+    Author: sss654654 <zed6740@naver.com>
+    Date:   Fri Nov 18 16:09:48 2022 +0900
 
     git 정리 업데이트ㅎ
 
-commit c2c45c8c1d8c74289b0d8449428d4f32b5ced823
-Author: sss654654 <zed6740@naver.com>
-Date:   Fri Nov 18 15:01:18 2022 +0900
+    commit c2c45c8c1d8c74289b0d8449428d4f32b5ced823
+    Author: sss654654 <zed6740@naver.com>
+    Date:   Fri Nov 18 15:01:18 2022 +0900
 
-    git 내용 정리
+git 내용 정리
 
 4. 특정 커밋으로 돌아가고 싶을 때
 git log를 통해 보이는 log에서 특정 커밋의 우측 해시 중 하나를 복사
 
-ex) $git log
-commit c2c45c8c1d8c74289b0d8449428d4f32b5ced823
-Author: sss654654 <zed6740@naver.com>
-Date:   Fri Nov 18 15:01:18 2022 +0900
+    ex) $git log
+    commit c2c45c8c1d8c74289b0d8449428d4f32b5ced823
+    Author: sss654654 <zed6740@naver.com>
+    Date:   Fri Nov 18 15:01:18 2022 +0900
 
     git 내용 정리
 
-=> copy c2c45c8c1d8c74289b0d8449428d4f32b5ced823
+    => copy c2c45c8c1d8c74289b0d8449428d4f32b5ced823
 
 => git reset --hard c2c45c8c1d8c74289b0d8449428d4f32b5ced823
 

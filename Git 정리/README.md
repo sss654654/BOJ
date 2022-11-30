@@ -74,16 +74,25 @@ planner branch :  플래너 서비스 구현
 
 <br/>
 
-## branch 명령어
+## branch 명령어(checkout)
 
 1. local에서 branch 생성, 전환
  
 => git branch : 현재 폴더의 브랜치를 보여줌
+
 => git checkout : 새 브랜치 생성 후 전환
-=> git checkout -b (새 브랜치 이름) : 새 브랜치 생성 후 전환
+
+=> git checkout -b (새 브랜치 이름) : 새 브랜치 생성 후 그 브랜치로 전환
+
+(checkout -b : *detached Head에 브랜치 부여)
+
 => git checkout (브랜치 이름) : 해당 브랜치로 전환 
 
-2. local에서 github에 새 branch 생성(추가)
+*detached HEAD : branch가 지정되지 않은 HEAD
+
+</br>
+
+1. local에서 github에 새 branch 생성(추가)
 
 => git push -u origin (생성한 브랜치 이름)
 
@@ -139,7 +148,6 @@ git pull origin (브랜치)를 이용하여 해당 브랜치에서 로컬로 코
     
     (HEAD는 마지막 커밋에 대한 포인터, git reset HEAD~1은 내가 방금 만든 커밋을 완전히 취소한다는 의미)
 
-*detached HEAD : branch가 지정되지 않은 HEAD
 
 3. git log
 

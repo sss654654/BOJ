@@ -50,11 +50,19 @@
 
 ## Local Git Workflow
 
-1. 코드 작성
+1. 코드 작성 (Working Directory)
 
-2. git add를 통해 변경사항 추적
+2. git add를 통해 변경사항 추적 (Staging Area)
 
-3. git commit을 통해 변경사항 저장
+*git diff : Working Directory에서의 변경점 확인. 즉, Staging Area와 차이를 확인하기 위해 사용(다만, git add를 통해 Staging Area로 올라간 변경사항은 git diff로 체크 불가능)
+
+*git diff HEAD : Working Directory와 Staging Area의 변경사항 모두를 Repository의 Head 커밋과 비교
+
+*git diff --staged(cached) : Staging Area와 Repository의 Head 커밋 사이의 변경 사항 확인
+
+*git diff [옵션] [파일이름] : 옵션을 적용한 후 파일이름을 입력하면 해당 파일의 diff만 확인 가능
+
+3. git commit을 통해 변경사항 저장(Repository)
 
 4. 코드 변경사항을 git push를 통해 github의 브랜치(원격 저장소)로 push 
 
@@ -80,15 +88,17 @@ planner branch :  플래너 서비스 구현
  
 => git branch : 현재 폴더의 브랜치를 보여줌
 
-=> git checkout : 새 브랜치 생성 후 전환
-
 => git checkout -b (새 브랜치 이름) : 새 브랜치 생성 후 그 브랜치로 전환
 
 (checkout -b : *detached Head에 브랜치 부여)
 
 => git checkout (브랜치 이름) : 해당 브랜치로 전환 
 
-*detached HEAD : branch가 지정되지 않은 HEAD
+*Detached HEAD란?
+
+보통 브랜치(branch)는 특정 커밋(commit)을을 가리키고 HEAD가 이 브랜치를 가리킨다. 이렇게 HEAD -> 브랜치 -> 특정 커밋 순서로 commit을 가리키는 상태를 ‘attached HEAD’ 상태(state)라고 한다. 그리고, Detached HEAD란 HEAD가 브랜치를 통해 간접적으로 commit을 가리키지 않고, 직접 커밋을 가리키는 것을 말한다.
+
+모르는 사이에 detached HEAD가 된 커밋은 브랜치를 따로 만들거나 기존 브랜치에 변경사항을 이동 , git checkout -b (브랜치) or git checkout (브랜치)를 이용!
 
 </br>
 
@@ -117,6 +127,51 @@ git branch -d (삭제할 브랜치)
 ex)study 브랜치에서 main 브랜치로 PR, 이후 merge
 
 ex)planner 브랜치에서 main 브랜치로 PR, 이후 merge
+
+<br/>
+
+## merge, rebase(두 가지의 브랜치 병합 방법)
+
+merge란?
+
+현재(checkout) 브랜치를 다른 브랜치로 합치는 과정. merge의 기본 단위는 브랜치이며, git merge로 커밋 단위의 병합은 불가
+
+<merge의 종류>
+
+1. Fast Forard Merge
+
+현재 브랜치의 커밋 내용을 병합할 브랜치의 커밋까지 옮기는 작업
+
+다만 이는 두 브랜치가 동일 선상에 놓여있어야 함!!(뒤에 쳐진 브랜치의 참조 개체가 앞서있는 브랜치가 가리키는 개체를 참조하도록 이동)
+
+=> (현재 브랜치에서)$git merge (병합할 브랜치)
+
+
+2. 3-way merge
+
+base 커밋에서 두 브랜치가 모두 커밋을 진행하여 분기해서 나간 상태의 merge
+
+두 브랜치가 각각의 분기에서 자신의 커밋을 가리키고 있고 git merge 명령을 실행하면 새로운 commit이 생성됨
+
+3-way로 불리는 이유는 각 커밋을 병합할 때 base 커밋과 각 브랜치가 참조하는 2개의 커밋을 기준으로 병합을 진행하기 때문
+
+다만 base에서 분기된 각 브랜치가 똑같은 파일의 똑같은 부분에 대해서 커밋을 한 뒤 병합하려 한다면 충돌(conflict)가 발생함
+
+</br>
+
+<충돌(conflict) ex>
+
+<<<<<< HEAD
+
+[현재 브랜치의 변경 사항]
+
+============================
+
+[merge할 대상 브랜치의 변경 사항]
+
+>>>>>> (대상 브랜치 이름)
+
+=> 위의 충돌을 해결하기 위해서는 <<, ==, >>를 모두 제거 후 선택해야 되는 변경사항만을 택하여 반영한 뒤 merge를 진행함
 
 <br/>
 

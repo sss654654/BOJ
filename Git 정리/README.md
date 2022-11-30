@@ -1,3 +1,10 @@
+#### Change Management
+
+소프트웨어는 지속적으로 변화한다. (개발중에도, 개발후에도) 지속적으로 변화하는 소프트웨어의 변경은 관리되어야한다. 
+프로젝트 진행 중 새로운 산출물이 축적되고, 모든 산출물은 버전업된다.
+이렇게 변경되는 산출물들을 관리하는 것이 형상관리(configuration management)이다.
+
+
 #### Git 정리
 
 맨 처음 vscode 폴더의 위치의 terminal에서 git init 선언
@@ -76,7 +83,7 @@ planner branch :  플래너 서비스 구현
 => git checkout -b (새 브랜치 이름) : 새 브랜치 생성 후 전환
 => git checkout (브랜치 이름) : 해당 브랜치로 전환 
 
-2. local에서 github에 새 branch 생성
+2. local에서 github에 새 branch 생성(추가)
 
 => git push -u origin (생성한 브랜치 이름)
 
@@ -128,8 +135,11 @@ git pull origin (브랜치)를 이용하여 해당 브랜치에서 로컬로 코
 2. git commit을 실수한 경우, 또는 커밋이 여러 개인 경우
    
     git commit -m "메세지"
-    => git reset HEAD~1
+    => git reset HEAD(물결표)1
+    
     (HEAD는 마지막 커밋에 대한 포인터, git reset HEAD~1은 내가 방금 만든 커밋을 완전히 취소한다는 의미)
+
+*detached HEAD : branch가 지정되지 않은 HEAD
 
 3. git log
 

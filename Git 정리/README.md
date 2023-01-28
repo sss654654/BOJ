@@ -100,7 +100,7 @@ planner branch :  플래너 서비스 구현
 
 모르는 사이에 detached HEAD가 된 커밋은 브랜치를 따로 만들거나 기존 브랜치에 변경사항을 이동 , git checkout -b (브랜치) or git checkout (브랜치)를 이용!
 
-</br>
+<br/>
 
 1. local에서 github에 새 branch 생성(추가)
 
@@ -130,7 +130,7 @@ ex)planner 브랜치에서 main 브랜치로 PR, 이후 merge
 
 <br/>
 
-## merge, rebase(두 가지의 브랜치 병합 방법)
+## merge, rebase, cherry-pick(브랜치 병합 방법)
 
 merge란?
 
@@ -146,6 +146,7 @@ merge란?
 
 => (현재 브랜치에서)$git merge (병합할 브랜치)
 
+<br/>
 
 2. 3-way merge
 
@@ -157,7 +158,7 @@ base 커밋에서 두 브랜치가 모두 커밋을 진행하여 분기해서 �
 
 다만 base에서 분기된 각 브랜치가 똑같은 파일의 똑같은 부분에 대해서 커밋을 한 뒤 병합하려 한다면 충돌(conflict)가 발생함
 
-</br>
+<br/>
 
 <충돌(conflict) ex>
 
@@ -172,6 +173,11 @@ base 커밋에서 두 브랜치가 모두 커밋을 진행하여 분기해서 �
 \>\>\>\>\>\> (대상 브랜치 이름)
 
 => 위의 충돌을 해결하기 위해서는 <<, ==, >>를 모두 제거 후 선택해야 되는 변경사항만을 택하여 반영한 뒤 merge를 진행함
+
+<br/>
+<br/>
+
+
 
 <br/>
 

@@ -52,7 +52,7 @@ def bridge(Ncount):
     global visit1
     global minval
     deque = []
-
+    
     visit1 = [[-1]*N for k in range(N)]
     for i in range(N):
         for k in range(N):

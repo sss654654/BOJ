@@ -4,28 +4,27 @@ n = int(sys.stdin.readline())
 
 li = list(map(int,sys.stdin.readline().split()))
 
+check = [0 for i in range(n)]
+
+
 X = int(sys.stdin.readline())
-
 li.sort()
+# print(li)
+# [1, 2, 3, 5, 7, 9, 10, 11, 12]
 
-breakon = 0
 result = 0
+st = 0
+end = len(li) - 1
 
-### 그리디로 다시 풀어보자
+while st < end:
+     tmp = li[st] + li[end]
 
-for i in li:
-    for j in range(len(li)-1,0,-1):
-        if i > li[j]:
-            breakon = 1
-            break
-        if X > i + li[j]:
-            break
-        elif X < i + li[j]:
-            continue
-        else:
-            result += 1
-            break
-    if breakon == 1:
-            break
-    
+     if tmp == X:
+          result += 1
+     if tmp < X:
+          st += 1
+          continue
+     end -= 1
+
+# 2, 3, 5, 6, 10
 print(result)

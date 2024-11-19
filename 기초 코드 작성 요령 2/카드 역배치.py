@@ -1,3 +1,4 @@
+"""
 import sys
 
 card = [i for i in range(1,21)]
@@ -14,3 +15,14 @@ for i in range(10):
 
 for i in card:
     print(i, end=" ")
+"""
+
+import sys
+cards = [i for i in range(1, 21)]
+for i in range(10):
+    a, b = map(int,sys.stdin.readline().split())
+    temp = cards[a-1:b]
+    temp.reverse()
+    del cards[a-1:b]
+    cards[a-1:a-1] = temp
+print(cards)

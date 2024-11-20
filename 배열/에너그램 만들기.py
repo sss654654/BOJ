@@ -1,3 +1,4 @@
+'''
 import sys
 
 
@@ -24,3 +25,23 @@ for i in range(26):
         ans += salpa[i] - falpa[i]
         
 print(ans)
+'''
+
+import sys
+word = list(sys.stdin.readline().strip())
+word2 = list(sys.stdin.readline().strip())
+
+len_words = len(word) + len(word2)
+minus = 0
+idx = 0
+idx2 = 0
+
+while True:
+    if word[idx] in word2:
+        minus += 2
+        word2.remove(word[idx])
+    idx += 1
+    if idx == len(word):
+        break
+
+print(len_words - minus)

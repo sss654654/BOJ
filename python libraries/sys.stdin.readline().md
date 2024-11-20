@@ -9,7 +9,7 @@
 
 ## 한개의 정수를 입력받을 때
 
-```
+```python
 import sys
 a = int(sys.stdin.readline())
 ```
@@ -23,7 +23,7 @@ sys.stdin.readline()은 한줄 단위로 입력받기 때문에, 개행문자가
 
 ## 정해진 개수의 정수를 한줄에 입력받을 때(3개)
 
-```
+```python
 import sys
 a,b,c = map(int,sys.stdin.readline().split())
 ```
@@ -35,7 +35,32 @@ map()은 반복 가능한 객체(리스트 등)에 대해 각각의 요소들을
 
 ## 임의의 개수의 정수를 한줄에 입력받아 리스트에 저장할 때
 
-```
+```python
 import sys
 data = list(map(int,sys.stdin.readline().split()))
 ```
+
+<br/>
+
+## 임의의 개수의 정수를 n줄 입력받아 2차원 리스트에 저장할 때
+
+```python
+import sys
+data = []
+n = int(sys.stdin.readline())
+for i in range(n):
+    data.append(list(map(int,sys.stdin.readline().split())))
+```
+
+<br/>
+
+## 문자열 n줄을 입력받아 리스트에 저장할 때
+
+```python
+import sys
+n = int(sys.stdin.readline())
+data = [sys.stdin.readline().strip() for i in range(n)]
+# strip()은 문자열 맨 앞과 맨 끝의 공백 문자를 제거
+```
+
+<br/>

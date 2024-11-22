@@ -1,3 +1,4 @@
+'''
 import sys
 
 N = sys.stdin.readline().strip()
@@ -24,3 +25,20 @@ if max < quo + rem:
     max = quo + rem
 
 print(max)
+'''
+
+import sys
+
+N = list(sys.stdin.readline().strip())
+
+num_sets = [0 for i in range(10)]
+
+for ni in range(len(N)):
+    num_sets[int(N[ni])] += 1
+
+sn = num_sets[6] + num_sets[9]
+if sn > 1:
+    num_sets[6] = int(sn / 2) + (sn % 2)
+    num_sets[9] = 0
+
+print(max(num_sets))

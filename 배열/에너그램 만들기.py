@@ -26,7 +26,6 @@ for i in range(26):
         
 print(ans)
 '''
-
 import sys
 word = list(sys.stdin.readline().strip())
 word2 = list(sys.stdin.readline().strip())

@@ -1,3 +1,4 @@
+'''
 import sys
 
 N = int(sys.stdin.readline())
@@ -20,4 +21,29 @@ for i in range(N):
         print("Possible")
 
     lalpa = [0 for i in range(26)]
-    ralpa = [0 for i in range(26)]
+  possible = 1
+possible_list = []  ralpa = [0 for i in range(26)]
+
+'''
+
+import sys
+
+N = int(sys.stdin.readline())
+is_possible = 1
+for i in range(N):
+    is_possible = 1
+    a, b = map(list, sys.stdin.readline().split())
+    if len(a) != len(b):
+        print("Impossible")
+        is_possible = 0
+        continue
+    for aidx in range(len(a)):
+        if a[aidx] not in b:
+            print("Impossible")
+            is_possible = 0
+            break
+        else:
+            b.remove(a[aidx])
+    if is_possible == 0:
+        continue
+    print("Possible")

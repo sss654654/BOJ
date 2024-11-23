@@ -1,25 +1,35 @@
 # 단일 연결 리스트
 
-class Node():
-    def __init__(self,data):
-        self.data = None
-        self.next = None
-        self.prev = None
-
-
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 # 노드 생성, 연결
+head = ListNode(0)
 
-head = Node(1)
-head.next = Node(2)
-head.next.next = Node(3) 
+curr_node = head
+
+new_node = ListNode(1)
+curr_node.next = new_node
+curr_node=curr_node.next
+
+curr_node.next = ListNode(2)
+curr_node=curr_node.next
 
 # 연결 리스트 값 출력
+node=head
+while node:
+    print(node.val)
+    node=node.next
 
-def printNodes():
-    node = head
-    while node: # node is not None
-        print(node.data, end = " ")
-        node = node.next
+# 노드 탐색하여 삭제
+node=head
+while node.next:
+    if node.next.val==2:
+        next_node=node.next.next
+        node.next=next_node
+        break
+    node=node.next
 
 # 연결 리스트의 끝에 새 노드를 추가
 

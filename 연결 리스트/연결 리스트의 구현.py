@@ -1,42 +1,44 @@
-# 단일 연결 리스트
-
 class ListNode:
-    def __init__(self, val=0, next=None):
+    def __init__(self, val):
         self.val = val
-        self.next = next
-# 노드 생성, 연결
-head = ListNode(0)
+        self.next = None
 
-curr_node = head
+def printNodes(node:ListNode):
+    crnt_node = node
+    while crnt_node is not None:
+        print(crnt_node.val, end=' ')
+        crnt_node = crnt_node.next
 
-new_node = ListNode(1)
-curr_node.next = new_node
-curr_node=curr_node.next
+class SLinkedList:
+    def __init__(self):
+        self.head = None
+        
+    def addAtHead(self, val): #O(1)
+        node = ListNode(val)
+        node.next = self.head
+        self.head = node
 
-curr_node.next = ListNode(2)
-curr_node=curr_node.next
+    #but when the list
+    def addBack(self, val): #O(n)
+        node = ListNode(val)
+        crnt_node = self.head
+        while crnt_node.next:
+            crnt_node = crnt_node.next
+        crnt_node.next = node
 
-# 연결 리스트 값 출력
-node=head
-while node:
-    print(node.val)
-    node=node.next
+    def findNode(self, val): #O(n)
+        crnt_node = self.head
+        while crnt_node is not None:
+            if crnt_node.val == val:
+                return crnt_node
+            crnt_node = crnt_node.next
+        raise RuntimeError('Node not found')
 
-# 노드 탐색하여 삭제
-node=head
-while node.next:
-    if node.next.val==2:
-        next_node=node.next.next
-        node.next=next_node
-        break
-    node=node.next
+    def addAfter(self, node, val): #O(1)
+        new_node = ListNode(val)
+        new_node.next = node.next
+        node.next = new_node
 
-# 연결 리스트의 끝에 새 노드를 추가
-
-def addBack(data):
-    node = head
-    while node:
-        if node.next is None:
-            node.next = Node(data)
-            break
-        node = node.next
+    def deleteAfter(self, prev_node): #O(1)
+        if prev_node.next is not None:
+            prev_node.next = prev_node.next.next

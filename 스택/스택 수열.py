@@ -44,8 +44,6 @@ if is_result:
 else:
     print("NO")
 
-# sequence -> [4 3 6 8 7 5 2 1]
-# stack -> 
 '''
 [stack] [result]   
 [1 2 3 4] [] ++++

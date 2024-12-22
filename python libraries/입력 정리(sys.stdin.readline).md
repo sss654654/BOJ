@@ -42,14 +42,12 @@ data = list(map(int,sys.stdin.readline().split()))
 
 <br/>
 
-## 임의의 개수의 정수를 n줄 입력받아 2차원 리스트에 저장할 때
+## 임의의 숫자 문자열(110101)을 입력받아 따로따로 띄워서 숫자 리스트로 저장할 때
 
 ```python
 import sys
 data = []
-n = int(sys.stdin.readline())
-for i in range(n):
-    data.append(list(map(int,sys.stdin.readline().split())))
+data.append(list(map(int,sys.stdin.readline().split())))
 ```
 
 <br/>

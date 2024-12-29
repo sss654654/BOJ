@@ -62,3 +62,17 @@ data = [sys.stdin.readline().strip() for i in range(n)]
 ```
 
 <br/>
+
+## 1 1 0 1 1 -> [1,1,0,1,1]
+
+```python
+list(map(int,sys.stdin.readline().split()))
+```
+
+<br/>
+
+## 11011 -> [1,1,0,1,1]
+
+```python
+list(map(int,sys.stdin.readline().strip()))
+```

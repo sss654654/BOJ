@@ -31,7 +31,7 @@ J는 입력에서 하나만 주어진다.
 지훈이가 불이 도달하기 전에 미로를 탈출 할 수 없는 경우 IMPOSSIBLE 을 출력한다.
 지훈이가 미로를 탈출할 수 있는 경우에는 가장 빠른 탈출시간을 출력한다.
 '''
-# dfs?
+
 
 import sys
 
@@ -64,7 +64,7 @@ def BFS():
                 ny = y + dy[dir]
                 if nx < 0 or nx >= R or ny < 0 or ny >= C:
                     return visited_j[x][y]
-                if laby[nx][ny] == '#' or visited_fire[nx][ny] != 0: 
+                if laby[nx][ny] == '#' or visited_fire[nx][ny] != 0 or visited_j[nx][ny] != 0:
                     # 지훈이는 벽이 아니고 불이 아닌 곳으로 이동 가능 이외 다른 조건 불필요
                     continue
                 if visited_fire[x][y] == visited_j[x][y]:

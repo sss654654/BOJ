@@ -29,16 +29,45 @@ W, H = map(int, sys.stdin.readline().split())
 monkey = []
 for i in range(H):
     monkey.append(list(map(int, sys.stdin.readline().split())))
+visited = [[[0 for i in range(K+1)] for j in range(W)] for k in range(H)]
 
+dx=[1,0,-1,0]
+dy=[0,1,0,-1]
 
+h_dx = [2,1,-1,-2,-2,-1,1,2]
+h_dy = [1,2,2,1,-1,-2,-2,-1]
 
+def BFS():
+    q = deque()
+    # 원숭이는 K+1의 각 층에서 움직이며 처음은 맨 아랫층에서 시작
+    q.append([0,0,0])
+    visited[0][0][0] = 1
+    while q:
+        x,y,k = q.popleft()
+        if x == H-1 and y == W-1:
+            return visited[x][y][k] - 1
+        if K != k:
+            for dir in range(8):
+                nx = x + h_dx[dir]
+                ny = y + h_dy[dir]
+                if nx<0 or nx>=H or ny<0 or ny>=W:
+                    continue
+                if monkey[nx][ny] != 0 or visited[nx][ny][k+1] != 0:
+                    continue
+                visited[nx][ny][k+1] = visited[x][y][k] + 1 # 말처럼 움직일 시 다음 층으로 이동
+                q.append([nx,ny,k+1])
+        for dir in range(4):
+            nx = x + dx[dir]
+            ny = y + dy[dir]
+            if nx<0 or nx>=H or ny<0 or ny>=W:
+                continue
+            if monkey[nx][ny] != 0 or visited[nx][ny][k] != 0:
+                continue
+            visited[nx][ny][k] = visited[x][y][k] + 1
+            q.append([nx,ny,k])   
+    return -1         
 
-
-
-
-
-
-
+print(BFS())
 
 '''
 import sys

@@ -52,17 +52,13 @@ def BFS():
             ny = y + dy[dir]
             if nx<0 or nx>=N or ny<0 or ny>=M:
                 continue
-            if k != K and maps[nx][ny] == 1:
-                if visited[nx][ny][k+1] != 0:
-                    continue
+            if k != K and maps[nx][ny] == 1 and visited[nx][ny][k+1]== 0:
                 visited[nx][ny][k+1] = visited[x][y][k] + 1
                 q.append([nx,ny,k+1])
-            elif maps[nx][ny] == 0:
+            elif maps[nx][ny] == 0 and visited[nx][ny][k] == 0:
                 if k != 0:
                     if visited[nx][ny][k-1] != 0:
                         continue
-                if visited[nx][ny][k] != 0:
-                    continue
                 visited[nx][ny][k] = visited[x][y][k] + 1
                 q.append([nx,ny,k])
 
@@ -106,3 +102,42 @@ for i in range(K+1):
 예제 출력 3 
 -1
 '''
+
+from collections import deque
+import sys
+
+n, m, k = map(int, input().split())
+visited = [[[0 for _ in range(m)] for _ in range(n)] for _ in range(k + 1)]
+graph = [list(map(int, sys.stdin.readline().strip())) for _ in range(n)]
+d = deque([(0, 0, 0, 1)]) # k, n, m, 현재까지의 거리
+visited[0][0][0] = 1
+
+while d:
+  ck, cn, cm, dist = d.popleft()  # dist : 밤/낮 정보이자 거리정보
+  # 도착
+  if cn == n - 1 and cm == m - 1:
+    print(dist)
+    break
+
+  # 탐색
+  day = dist % 2  # dist가 짝수면 밤
+  for dn, dm in [(-1, 0), (1, 0), (0, 1), (0, -1)]:
+    nn, nm = cn + dn, cm + dm
+    if (0 <= nn < n and 0 <= nm < m):
+      # 일반 탐색
+      if visited[ck][nn][nm] == 0 and graph[nn][nm] == 0:
+        visited[ck][nn][nm] = dist
+        d.append((ck, nn, nm, dist + 1))
+
+      # 첫 방문인 벽 부수기
+      elif (ck < k and graph[nn][nm] == 1 and visited[ck + 1][nn][nm] == 0):
+        # 낮이라면
+        if day:
+          visited[ck + 1][nn][nm] = dist
+          d.append((ck + 1, nn, nm, dist + 1))
+        # 밤이라면
+        else:
+          d.append((ck, cn, cm, dist + 1)) # 하루 대기
+
+else:
+  print(-1)

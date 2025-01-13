@@ -1,7 +1,27 @@
 import sys
 
 N,r,c = map(int,sys.stdin.readline().split())
+# 2^N x 2^N
 
+def Z(n,r,c): # n=2,r=3,c=1
+    # 4+4+3
+    if n == 0:
+        return 0
+    half = int(2**n / 2) # half = 4
+    if r >= half and c >= half: # 4
+        return 3*(half**2) + Z(n-1,r-half,c-half)
+    elif r >= half and c < half: # 3
+        return 2*(half**2) + Z(n-1,r-half,c)
+    elif r < half and c >= half: # 3
+        return (half**2) + Z(n-1,r,c-half)
+    return Z(n-1,r,c)
+
+print(Z(N,r,c))
+
+
+
+
+'''
 def Z(n,r,c):
     if n == 0:
         return 0
@@ -20,3 +40,5 @@ def Z(n,r,c):
 print(Z(N,r,c))
 # 3 7 7 -> 48(4)+12(4)+3(4)
 # 3 4 4 -> 48(4)+0+0
+
+'''

@@ -7,40 +7,33 @@
 첫째 줄에 자연수 N과 M이 주어진다. (1 ≤ M ≤ N ≤ 8)
 
 출력
-한 줄에 하나씩 문제의 조건을 만족하는 수열을 출력한다. 
-중복되는 수열을 여러 번 출력하면 안되며, 각 수열은 공백으로 구분해서 출력해야 한다.
+한 줄에 하나씩 문제의 조건을 만족하는 수열을 출력한다. 중복되는 수열을 여러 번 출력하면 안되며, 각 수열은 공백으로 구분해서 출력해야 한다.
 
 수열은 사전 순으로 증가하는 순서로 출력해야 한다.
 '''
-
 import sys
+N, M = map(int, sys.stdin.readline().split())
 
-N, M = list(map(int,sys.stdin.readline().split()))
+arr = [0 for _ in range(N+1)]
+is_used = [0 for _ in range(N+1)]
 
-print(N,M) # 1부터 N까지 자연수 중에서 중복 없이 M개를 고른 수열
-
-result = [0 for i in range(10)]
-is_used = [0 for i in range(10)]
-
-
-def nm(k):
+def n_m(k):
     if k == M:
-        for i in range(M): # 중복 없이 M개를 고른 수열
-            print(result[i],end=' ')
+        for i in range(M):
+            print(arr[i], end=" ")
         print()
         return
-    for i in range(1, N+1): # 1부터 N까지 자연수 중에서
-        if not is_used[i]: # result[0] = 1, result[1] = 2, result[2] = 3
-            result[k] = i # result에 값을 저장
-            is_used[i] = 1 # result에 값을 저장된 값([i])에 대한 사용 여부(is_used)를 참으로 변경
-            nm(k+1) # 출력(print)하고 돌아왔다면 마지막에 사용된 숫자는 사용한 적 없는 것(is_used[i] = 0)으로 취급
-            is_used[i] = 0 # 1,2,3 > is_used[3] = 0 > 1,2,4 ~~~~~
-nm(0)
-
+    for i in range(1, N+1):
+        if not is_used[i]:
+            arr[k] = i
+            is_used[i] = 1
+            n_m(k+1)
+            is_used[i] = 0
+n_m(0)
 
 '''
 예제 입력 1 
-3 1 # 1부터 N까지 자연수 중에서 중복 없이 M개를 고른 수열
+3 1
 예제 출력 1 
 1
 2

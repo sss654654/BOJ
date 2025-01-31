@@ -19,25 +19,27 @@ move_stack = []
 from collections import deque
 def update(k, board):
     return_board = [[0 for _ in range(N)] for _ in range(N)]
-    if k == 1: # 우
+    if k == 1: # 게임판을 우측으로 기울이기
         for x in range(N):
             stack = deque()
-            for y in range(N-1,-1,-1):
-                if stack:
-                    if stack[-1][0] == board[x][y] and stack[-1][1] == 0: # 스택의 최상단과 넣으려는 값이 같으면 / 합쳐진 적이 없으면
+            for y in range(N-1,-1,-1): # 보드의 우측에서부터 좌측방향으로 숫자 탐색
+                if stack: # 스택에 값이 들어있다면
+                    if stack[-1][0] == board[x][y] and stack[-1][1] == 0: 
+                        # 스택의 최상단과 넣으려는 값이 같으면 and 합쳐진 적이 없으면(0이면)
                         tmp = stack.pop()
-                        stack.append([tmp[0]+board[x][y],1]) # 합쳐진 수는 1
+                        stack.append([tmp[0]+board[x][y],1]) # 합친 수는 1로 스택에 넣어 조건에서 걸러지도록 함
                         continue
-                if board[x][y] != 0:
+                if board[x][y] != 0: # 숫자가 0이 아니라면 스택에 값과 0을 함께 넣음
                     stack.append([board[x][y],0]) # 합쳐지지 않은 수는 0
+
             tmp_y = N - 1
-            while stack:
-                tmp = stack.popleft()
-                return_board[x][tmp_y] = tmp[0]
+            while stack: # 스택이 빌 때까지 반복
+                tmp = stack.popleft() # 제일 먼저 스택에 쌓인 순서대로 보드를 다시 구성
+                return_board[x][tmp_y] = tmp[0] # 우측으로 게임판을 기울어야 하므로 우측에서부터 값 대입
                 tmp_y -= 1
-            for i in range(tmp_y, -1,-1):
+            for i in range(tmp_y, -1,-1): # 스택에 있는 계산되고 넣어진 값들이 보드에 모두 소모되고 나머지는 0으로 표기 
                 return_board[x][i] = 0
-        return return_board
+        return return_board # 우측으로 기울어진 보드를 반환, 이하 생략
     elif k == 2: # 좌
         for x in range(N):
             stack = deque()
@@ -112,10 +114,11 @@ def play(k):
                     max_val = tmp[i][j]
         return
     for i in range(1,5):
-        prev_tmp = tmp
-        tmp = update(i,tmp)
-        play(k+1)
-        tmp = prev_tmp
+        prev_tmp = tmp # 업데이트 되기 전 보드판을 prev_tmp에 저장
+        tmp = update(i,tmp) # 어떤 방향에 대해 업데이트된(기울어진) 보드판을 tmp에 저장
+        play(k+1) # 이 행위가 5번이 반복될 때까지 함수 호출(백트래킹)
+        # k가 5가 되면 보드판에서 최댓값을 구한 후 리턴
+        tmp = prev_tmp # 리턴된 즉시 업데이트 전 보드판(prev_tmp)를 현재 보드판(tmp)에 롤백하여 다시 다른 방향에 대해서 업데이트 수행
     return # k에서 반복문을 다 돌았으면 k-1로 돌아가
 
 play(0)

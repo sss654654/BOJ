@@ -27,4 +27,21 @@ for key, value in dict.items():
 김철수 300
 Anna 180
 '''
+
+import collections
+
+dict = collections.defaultdict(int)
+for i in N:
+	dict[i] += 1
+print(dict)
+# defaultdict(<class 'int'>, {1: 2, 5: 1, 4: 2, 2: 1, 3: 2})
+
+dict_count = collections.Counter(N)
+print(dict_count)
+# defaultdict(<class 'int'>, {1: 2, 5: 1, 4: 2, 2: 1, 3: 2})
+
+dict_order = collections.OrderedDict(N)
+print(dict_order)
+
+
 ```
